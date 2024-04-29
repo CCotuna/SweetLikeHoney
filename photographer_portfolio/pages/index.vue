@@ -3,9 +3,11 @@
         <Herosection />
         <div
             class="mt-10 p-5 md:p-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 items-start ">
-            <Servicecard v-for="i in 4" />
+            <Servicecard />
+            <Servicecard />
+            <Servicecard />
         </div>
-        <firebase-img-retriever />
+        <image-grid folder-path="images" />
     </div>
 </template>
 <script setup></script>

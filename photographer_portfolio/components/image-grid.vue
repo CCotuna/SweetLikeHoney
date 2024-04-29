@@ -1,12 +1,19 @@
 <script setup>
 import { getStorage, ref as storageRef, listAll, getDownloadURL } from 'firebase/storage'
 
+const props = defineProps({
+    folderPath: {
+        type: String,
+        required: true
+    }
+})
+
 const photoUrls = ref([])
 
 onMounted(async () => {
     try {
         const storage = getStorage()
-        const imagesRef = storageRef(storage, 'images')
+        const imagesRef = storageRef(storage, props.folderPath)
         const snapshot = await listAll(imagesRef)
 
         for (const item of snapshot.items) {
