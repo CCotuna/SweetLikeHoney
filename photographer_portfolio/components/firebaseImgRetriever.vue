@@ -1,18 +1,29 @@
 <script setup>
-import { useFileDialog } from '@vueuse/core'
-import { ref as storageRef } from 'firebase/storage'
-import { useFirebaseStorage, useStorageFileUrl } from 'vuefire'
+import { getStorage, ref as storageRef, listAll, getDownloadURL } from 'firebase/storage'
 
 const photoUrls = ref([])
 
-const storage = useFirebaseStorage()
-const mountainFileRef = storageRef(storage, 'images/free-photo-of-a-white-flower-on-a-tree-branch-in-the-sun.jpeg')
-const { url, refresh } = useStorageFileUrl(mountainFileRef)
+onMounted(async () => {
+    try {
+        const storage = getStorage()
+        const imagesRef = storageRef(storage, 'images')
+        const snapshot = await listAll(imagesRef)
+
+        for (const item of snapshot.items) {
+            const downloadUrl = await getDownloadURL(item)
+            photoUrls.value.push(downloadUrl)
+        }
+    } catch (error) {
+        console.error('Error retrieving photos:', error)
+    }
+})
 </script>
+
 <template>
-    <div>
-        <img :src="url" alt="Mountain" />
-        <button @click="refresh">Refresh</button>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div v-for="photoUrl in photoUrls" :key="photoUrl">
+            <img :src="photoUrl" class="w-full h-auto" alt="Photo" />
+        </div>
     </div>
 </template>
 <style scoped></style>
