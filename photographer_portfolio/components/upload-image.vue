@@ -24,7 +24,7 @@ async function uploadPictures() {
             showAlert.value = true
             setTimeout(() => {
                 showAlert.value = false
-            }, 3000)
+            }, 1000)
         } catch (error) {
             console.error('Error uploading files:', error)
         }
@@ -35,7 +35,8 @@ async function uploadPictures() {
 <template>
     <form @submit.prevent="uploadPictures">
         <fieldset>
-            <button type="button" @click="open({ accept: 'image/*,video/*', multiple: true })">
+            <button type="button" @click="open({ accept: 'image/*,video/*', multiple: true })"
+                class="p-5 border border-emerald-500 my-5 rounded">
                 <template v-if="files?.length === 1">
                     Selected file: {{ files.item(0)?.name }} (Click to select another)
                 </template>
@@ -49,10 +50,10 @@ async function uploadPictures() {
 
             <br />
 
-            <button type="submit">Upload</button>
+            <button type="submit" class="p-5 bg-emerald-700 text-white rounded">Upload</button>
         </fieldset>
 
-        <div v-if="showAlert" class="fixed top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded shadow-lg">
+        <div v-if="showAlert" class="fixed top-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded shadow-lg">
             Files uploaded successfully!
         </div>
     </form>

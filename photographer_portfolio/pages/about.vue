@@ -1,6 +1,6 @@
 <template>
     <div>
-        Another page
+        About page
         <upload-image />
     </div>
 </template>
