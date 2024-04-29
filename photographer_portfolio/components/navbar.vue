@@ -1,16 +1,16 @@
 <template>
     <nav class="px-4 sm:px-6 lg:px-8">
-        <div class="flex space-x-4 sm:space-x-6 lg:space-x-10 font-cinzel">
-            <div class="hidden sm:block">
+        <div class="flex space-x-4 sm:space-x-6 lg:space-x-10 font-cinzel text-base">
+            <div class="hidden sm:block hover:text-emerald-600">
                 <NuxtLink to="/" class="link">Homepage</NuxtLink>
             </div>
-            <div class="hidden sm:block">
+            <div class="hidden sm:block hover:text-emerald-600">
                 <NuxtLink to="/about" class="link">About</NuxtLink>
             </div>
-            <div class="hidden sm:block">
+            <div class="hidden sm:block hover:text-emerald-600">
                 <NuxtLink to="/portfolio" class="link">Portfolio</NuxtLink>
             </div>
-            <div class="hidden sm:block">
+            <div class="hidden sm:block hover:text-emerald-600">
                 <NuxtLink to="/blog" class="link">Blogs</NuxtLink>
             </div>
             <div class="sm:hidden">
