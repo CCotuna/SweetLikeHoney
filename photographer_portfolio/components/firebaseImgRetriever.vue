@@ -3,6 +3,8 @@ import { useFileDialog } from '@vueuse/core'
 import { ref as storageRef } from 'firebase/storage'
 import { useFirebaseStorage, useStorageFileUrl } from 'vuefire'
 
+const photoUrls = ref([])
+
 const storage = useFirebaseStorage()
 const mountainFileRef = storageRef(storage, 'images/free-photo-of-a-white-flower-on-a-tree-branch-in-the-sun.jpeg')
 const { url, refresh } = useStorageFileUrl(mountainFileRef)
