@@ -8,22 +8,31 @@ useHead({
         },
         {
             rel: 'stylesheet',
-            href: 'https://fonts.googleapis.com/css2?family=Roboto&display=swap',
-            crossorigin: ''
+            href: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap'
         }
     ]
 })
+
+const showMobileMenu = ref(false);
 </script>
 
 <template>
-    <div class="container mx-auto max-w-2xl">
-        <header class="flex justify-between items-center mt-5">
-            <div class="flex items-center space-x-10">
-                <NuxtLink to="/" class="text-xl font-semibold p-2 hover:bg-gray-200">Homepage</NuxtLink>
-                <NuxtLink to="/about" class="text-xl font-semibold p-2 hover:bg-gray-200">About</NuxtLink>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="flex justify-between items-center mt-5 sm:mt-8 lg:mt-10">
+            <div class="flex items-center space-x-4 sm:space-x-6 lg:space-x-10">
+                <NuxtLink to="/" class="font-cinzel text-lg sm:text-xl lg:text-2xl font-semibold p-2 hover:bg-gray-200">
+                    LogoPart
+                </NuxtLink>
             </div>
+            <div>
+                <Navbar />
+            </div>
+
         </header>
-        <main class="p-2 mt-10">
+        <div v-if="showMobileMenu" class="mt-4 space-y-2">
+            <Navbar />
+        </div>
+        <main class="p-2 mt-6 sm:mt-8 lg:mt-10">
             <slot />
         </main>
     </div>
@@ -32,6 +41,10 @@ useHead({
 <style>
 body {
     font-family: 'Roboto';
+}
+
+.font-cinzel {
+    font-family: 'Cinzel', serif;
 }
 
 body {
