@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode', 'nuxt-vuefire',],
+  plugins: [
+    '@/plugins/Vue3Lottie.client.ts'
+  ],
   css: [
     'bootstrap-icons/font/bootstrap-icons.css'
   ],

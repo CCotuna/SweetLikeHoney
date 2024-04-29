@@ -1,5 +1,5 @@
 <template>
-    <nav class="px-4 sm:px-6 lg:px-8">
+    <nav class="px-4 sm:px-6 lg:px-8 ">
         <div class="flex space-x-4 sm:space-x-6 lg:space-x-10 font-cinzel text-base">
             <div class="hidden sm:block hover:text-emerald-600">
                 <NuxtLink to="/" class="link">Homepage</NuxtLink>
