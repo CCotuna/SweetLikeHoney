@@ -13,33 +13,37 @@ const {
     reset,
 } = useFileDialog()
 
-async function uploadPicture() {
-    const file = files.value?.[0]
-    if (file) {
+async function uploadPictures() {
+    if (files.value?.length) {
         try {
-            const fileRef = storageRef(storage, `${folderPath}/${file.name}`)
-            await uploadBytes(fileRef, file)
-            console.log('File uploaded successfully!')
+            for (const file of files.value) {
+                const fileRef = storageRef(storage, `${folderPath}/${file.name}`)
+                await uploadBytes(fileRef, file)
+            }
+            console.log('Files uploaded successfully!')
             showAlert.value = true
             setTimeout(() => {
                 showAlert.value = false
-            }, 1000)
+            }, 3000)
         } catch (error) {
-            console.error('Error uploading file:', error)
+            console.error('Error uploading files:', error)
         }
     }
 }
 </script>
 
 <template>
-    <form @submit.prevent="uploadPicture">
+    <form @submit.prevent="uploadPictures">
         <fieldset>
-            <button type="button" @click="open({ accept: 'image/*,video/*', multiple: false })">
+            <button type="button" @click="open({ accept: 'image/*,video/*', multiple: true })">
                 <template v-if="files?.length === 1">
                     Selected file: {{ files.item(0)?.name }} (Click to select another)
                 </template>
+                <template v-else-if="files?.length > 1">
+                    {{ files.length }} files selected (Click to select more)
+                </template>
                 <template v-else>
-                    Select an image or video
+                    Select one or more images or videos
                 </template>
             </button>
 
@@ -49,7 +53,14 @@ async function uploadPicture() {
         </fieldset>
 
         <div v-if="showAlert" class="fixed top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded shadow-lg">
-            File uploaded successfully!
+            Files uploaded successfully!
         </div>
     </form>
 </template>
+
+<style scoped>
+.fixed {
+    position: fixed;
+    z-index: 100;
+}
+</style>
